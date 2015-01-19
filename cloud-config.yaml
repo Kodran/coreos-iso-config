@@ -1,28 +1,13 @@
 #cloud-config
 
-hostname: kb8-master
+# Set Hostname
+hostname: CoreOS_BM
+
+# Set SSH Keys
+ssh_authorized_keys:
+- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC30vQko0K/jwNxKq7U/CbuL3mH71tEOwpkHQfQglUAXRdHAEk5yansr/zKhNdxu1XJ7gUMcF/0iZ1IZQbEV9MMEm1Xgk6i3uIRWHKYNajWGjAVDtsuw4ljK9pEIczdLEApdgGUPct7ngI8rj+0gh57Jr543MrcXLesvg19xlOWVUvTRjPOUrmNzpbl5AzDzAOS8mJux+RPTeyIgAA6CM5KD8fpBtEha+vMVFSflJ3oMwHcevVd6KvfxdahwdwHLG5J0ZW3PENZ1RUe7UmpZWhFPEpbfxlX2kXcFLz86ZH+L1ddG8RcnNfjmb8m3V/jLlVi6NSFWAPzfWq7IHmSUg7L jcastrof@MacBook-Pro-de-Arturo-2.local
 
 coreos:
-  etcd:    
-    addr: $private_ipv4:4001
-    peer-addr: $private_ipv4:7001
-  units:
-    - name: etcd.service
-      command: start
-    - name: fleet.service
-      command: start
-    - name: static.network
-      content: |
-        [Match]
-        Name=enp2s0
-
-        [Network]
-        Address=192.168.0.15/24
-        Gateway=192.168.0.1
-users:
-  - name: core
-    ssh-authorized-keys: 
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMxWrt0g5OznsB5FYzS+xnozoNrlTYGFMq7OXIgz3Ie+XSxDjT4Pi2PUx1gt1FAYGKkyxviEkVtC5I/OatMtgaQMdiToEHX7+B7psZpk1x2EWp/+coQKmBs2sD6QDWRwRIkPJgk4InH80FgIcgoMDe55o0PyOOjZSoW0/qs9ahgjfT/LHEBpWD6+Yw+vXbjHYC2EUUHltpn9RYL2tKe3Dj94gNrJS4OW1KVaWEC4nNViKpPC9j7dJJ6dESZz8Jkzra9geDzh6jMbTIleljx53JOEUrRCspK3SSUKE1wna1Zy6bDNacc5MUYlHXX30Ah4TsWilF7aHEe/K6ISb3olB7 jcastrof@MacBook-Pro-de-Arturo-2.local
-  - groups:
-      - sudo
-      - docker
+  etcd:
+    # generate a new token for each unique cluster from https://discovery.etcd.io/new
+    https://discovery.etcd.io/73c2f183d0c5cb888c18e1c02b9ee010
