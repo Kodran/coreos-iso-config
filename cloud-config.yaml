@@ -10,4 +10,4 @@ ssh_authorized_keys:
 coreos:
   etcd:
     # generate a new token for each unique cluster from https://discovery.etcd.io/new
-    https://discovery.etcd.io/73c2f183d0c5cb888c18e1c02b9ee010
+      discovery: https://discovery.etcd.io/73c2f183d0c5cb888c18e1c02b9ee010
